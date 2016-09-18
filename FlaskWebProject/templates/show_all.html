@@ -1,0 +1,10 @@
+<!doctype html>
+<title>Flaskr</title>
+<body>
+  {% for entry in food %}
+    <li><h2>Meal: {{ entry.name }}</h2> Healthy? {{ entry.healthy }} </br>
+  {% else %}
+    <li><em>Unbelievable.  No entries here so far</em>
+  {% endfor %}
+</body>
+</html>
