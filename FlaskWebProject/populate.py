@@ -1,6 +1,5 @@
 from kalories import db
 from kalories import Food, API
-import csv
 
 def initiate():
 	db.create_all()
@@ -48,22 +47,6 @@ def initiate():
 	db.session.add(pic2)
 	
 	db.session.commit()
-
-def importCSV():
-    db.create_all()
-    with open('ABBREV.csv', 'rb') as csvfile:
-        reader=csv.reader(csvfile)
-        #x=0
-        reader.next() #skip header
-        for row in reader:
-            #if (x<5):
-                #print (row[1]+" "+ row[4]+" "+ row[7]+ row[5]+ row[10]+row[33]+row[31]+row[20]+row[43]+row[3]+row[49])
-                #x+=1
-            #Format: name, protein, carbs, fat, calcium, vitA, vitB, vitC, vitK, healthy, calories, unit
-            #temp=Food(row[1], float(row[4]), float(row[7]), float(row[5]), float(row[10]),float(row[33]),float(row[31]),float(row[20]),float(row[43]),True,float(row[3]),row[49])
-            temp=Food(row[1], row[4], row[7], row[5], row[10],row[33],row[31],row[20],row[43],True,row[3],row[49])
-            db.session.add(temp)
-            db.session.commit()
 
 if __name__ == '__main__':
 	initiate()
