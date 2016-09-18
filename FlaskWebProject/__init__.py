@@ -19,6 +19,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///carrots.db'
 app.config['DEBUG'] = True
 db = SQLAlchemy(app)
 
+food_list = ["yogurt", "bagel", "tomato", "lettuce", "ketchup", "beef",
+"french fries", "broccoli", "mushroom", "pepper", "bread", "sesame"]
+
 class Food(db.Model):
     __tablename__ = 'food'
     id = db.Column('food_id', db.Integer, primary_key=True)
@@ -121,7 +124,7 @@ def getSuggestions():
         a = db.session.query(Food.name).filter(Food.name.contains(val)).first()
         print val
         print a
-        if (a is not None):
+        if (a is not None or val in food_list):
             print 'success'
             answer.append(val)
     
