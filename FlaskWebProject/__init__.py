@@ -100,7 +100,7 @@ def getSuggestions():
 
     image = request.get_json(silent=False, force=True)
     print image
-    print "image"
+    """print "image"
     base_id = image['base_id']
     dest = "static/" + randomword(14) + ".png"
 
@@ -121,7 +121,8 @@ def getSuggestions():
         if (db.session.query(Food).filter(Food.name.contains(val)) is not None):
             print val
             answer.append(val)
-    return jsonify(suggestions=answer, url=dest)
+    return jsonify(suggestions=answer, url=dest)"""
+    return image
 
 @app.route('/confirmFood', methods=['POST'])
 def confirmFood():
