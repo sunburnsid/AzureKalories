@@ -117,11 +117,12 @@ def getSuggestions():
     
     parsed = result['results'][0]['result']['tag']['classes']
     answer = []
-    print parsed
-    for val in parsed:
-        if (db.session.query(Food).filter(Food.name.contains(val)) is not None):
-            print val
-            answer.append(val)
+    a = db.session.query(Food.name).filter(Food.name.contains(val)).first()
+    
+    if (a is not None):
+        print 'success'
+        answer.append(val)
+    
     return jsonify(suggestions=answer, url=dest)
 
 @app.route('/confirmFood', methods=['POST'])
