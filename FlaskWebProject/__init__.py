@@ -11,6 +11,7 @@ import tempfile
 import base64
 import random, string
 import time
+import tempfile
 
 
 app = Flask(__name__)
@@ -102,13 +103,13 @@ def getSuggestions():
     print image
     print "image"
     base_id = image['base_id']
-    dest = "static/" + randomword(14) + ".png"
+    dest = tempfile.gettempdir() +"/" + randomword(14) + ".png"
 
     image_64_decode = base64.decodestring(base_id) 
     with open(dest, 'wb') as f:
         f.write(image_64_decode)
     print "decoded"
-    #clarifai_api = ClarifaiApi() # assumes environment variables are set.
+    #clarifai_api = ClarifaiApi() # aidlessumes environment variables are set.
     clarifai_api = ClarifaiApi("Sa3eWiFzsFVygnleCNQAPvJacvIVAvkBBbN5cxmY", "qIf-5HaEzO225zuUaj5FTREU7iYAJLHU5_XrpHH_")
     result = clarifai_api.tag_images(open(dest, 'rb'))
 
